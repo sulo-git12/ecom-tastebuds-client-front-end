@@ -14,10 +14,16 @@
   padding: 25px;
 }
 
+.brand-name {
+  font-size: 20px;
+  font-weight: bold;
+}
+
 .footer {
   position: absolute;
   bottom: 0;
   width: 100%;
+  font-size: 12px;
   text-align: center;
   color: #fdb940;
   background-color: black;
