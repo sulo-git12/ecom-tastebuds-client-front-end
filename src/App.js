@@ -1,10 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import NavigationBar from "./components/Navigation";
+import NavigationBar from "./components/NavigationBar";
 import Footer from "./components/Footer";
 import Outlets from "./pages/Outlets";
 import Outlet from "./pages/Outlet";
-// import "bootstrap/dist/css/bootstrap.css";
-import "./styles/master.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (
