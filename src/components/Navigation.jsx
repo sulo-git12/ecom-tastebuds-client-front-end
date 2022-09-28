@@ -7,6 +7,7 @@ const Navigation = () => {
       <ul className="nav-ul">
         <li>
           <Link to="/">Home</Link>
+          <Link to="/Outlets">Outlet</Link>
           <Link to="/Outlet">Outlet</Link>
           <Link to="/Foods">Foods</Link>
           <Link to="/Wish-List">Wish-List</Link>
