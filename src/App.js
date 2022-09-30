@@ -1,8 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import NavigationBar from "./components/Navigation";
+import NavigationBar from "./components/NavigationBar";
 import Footer from "./components/Footer";
-// import "bootstrap/dist/css/bootstrap.css";
-import "./styles/master.css";
+import Outlets from "./pages/Outlets";
+import Outlet from "./pages/Outlet";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (
@@ -12,7 +13,8 @@ function App() {
 
         <Routes>
           <Route path="/" element={<h1>Home Component</h1>} />
-          <Route path="/Outlet" element={<h1>Outlet Component</h1>} />
+          <Route path="/Outlets" element={<Outlets />} />
+          <Route path="/Outlet" element={<Outlet />} />
           <Route path="/Foods" element={<h1>Foods Component</h1>} />
           <Route path="/Wish-List" element={<h1>Wish-List Component</h1>} />
           <Route path="/Profile" element={<h1>Profile Component</h1>} />
