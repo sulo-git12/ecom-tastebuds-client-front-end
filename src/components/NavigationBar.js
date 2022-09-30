@@ -7,13 +7,27 @@ const Navigation = () => {
     <div>
       <ul className="nav-ul">
         <li>
-          <Link className="brand-name" to="/" >TasteBuds</Link>
-          <Link to="/">Home</Link>
-          <Link to="/Outlets">Outlets</Link>
-          <Link to="/Outlet">Outlet</Link>
-          <Link to="/Foods">Foods</Link>
-          <Link to="/Wish-List">Wish-List</Link>
-          <Link to="/Profile">Profile</Link>
+          <Link key={0} className="brand-name" to="/">
+            TasteBuds
+          </Link>
+          <Link key={1} to="/">
+            Home
+          </Link>
+          <Link key={2} to="/Outlets">
+            Outlets
+          </Link>
+          <Link key={3} to="/Outlet">
+            Outlet
+          </Link>
+          <Link key={4} to="/Foods">
+            Foods
+          </Link>
+          <Link key={5} to="/Wish-List">
+            Wish-List
+          </Link>
+          <Link key={6} to="/Profile">
+            Profile
+          </Link>
         </li>
       </ul>
     </div>
