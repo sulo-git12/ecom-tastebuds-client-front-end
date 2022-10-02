@@ -1,0 +1,22 @@
+.outlet-header-card {
+  border-radius: 0px 0px 30px 30px !important;
+  padding: 0px !important;
+}
+
+.outlet-header-card-img-top {
+  border-radius: 0px 0px 30px 30px !important;
+}
+
+.outlet-type-li {
+  float: left;
+  margin: 0 20px;
+}
+
+.checked {
+  color: orange;
+}
+
+.outlet-card-sub-titile {
+  color: gray;
+  font-size: 18px;
+}

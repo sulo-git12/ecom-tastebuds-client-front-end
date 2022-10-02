@@ -16,7 +16,11 @@ const Navigation = () => {
           <Link key={2} to="/Outlets">
             Outlets
           </Link>
+<<<<<<< HEAD
           <Link key={3} to="/Outlet">
+=======
+          <Link key={3} to="/Outlets/6335d94791ea97c87af4cfc6">
+>>>>>>> dd02444 (Updated Outlet Page - specific outlet details view)
             Outlet
           </Link>
           <Link key={4} to="/Foods">
