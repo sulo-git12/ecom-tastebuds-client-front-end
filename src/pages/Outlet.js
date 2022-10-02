@@ -17,9 +17,7 @@ const Outlet = () => {
       const { data } = await axios.get(url);
       setOutlet(data);
     } catch (err) {
-      setError(err);
-    } finally {
-      setLoading(true);
+      console.log(err);
     }
   };
 
