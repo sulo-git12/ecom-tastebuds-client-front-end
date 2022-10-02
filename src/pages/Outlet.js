@@ -9,8 +9,6 @@ const Outlet = () => {
   const { _id } = useParams();
 
   const [outlet, setOutlet] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
 
   const getOutletById = async (outletId) => {
     const url = `http://localhost:8088/api/outlets/${outletId}`;
@@ -30,9 +28,6 @@ const Outlet = () => {
   }, []);
 
   // ----------------------- Data Display Section
-
-  if (!loading) return <p>Loading ....</p>;
-  if (error) return console.log(error);
   if (!outlet) return null;
 
   return (
