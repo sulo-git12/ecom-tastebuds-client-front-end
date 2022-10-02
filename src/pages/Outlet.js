@@ -10,7 +10,6 @@ const Outlet = () => {
 
   const [outlet, setOutlet] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
 
   const getOutletById = async (outletId) => {
     const url = `http://localhost:8088/api/outlets/${outletId}`;
@@ -19,7 +18,7 @@ const Outlet = () => {
       const { data } = await axios.get(url);
       setOutlet(data);
     } catch (err) {
-      setError(err);
+      console.log(err);
     } finally {
       setLoading(true);
     }
@@ -31,9 +30,7 @@ const Outlet = () => {
 
   // ----------------------- Data Display Section
 
-  if (!loading) return <p>Loading ....</p>;
-  if (error) return console.log(error);
-  if (!outlet) return null;
+  if (!loading) return;
 
   return (
     <div>
