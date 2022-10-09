@@ -16,20 +16,6 @@ const Navigation = () => {
           <Link key={2} to="/Outlets">
             Outlets
           </Link>
-<<<<<<< HEAD
-          <Link key={3} to="/Outlets/6335d94791ea97c87af4cfc6">
-            Outlet
-          </Link>
-          <Link key={4} to="/Foods">
-            Foods
-          </Link>
-          <Link key={5} to="/Wish-List">
-            Wish-List
-          </Link>
-          <Link key={6} to="/Profile">
-            Profile
-          </Link>
-=======
           <Link key={3} to="/FoodOutlets/1">
             Outlet
           </Link>
@@ -45,7 +31,6 @@ const Navigation = () => {
           <Link key={6} to="/myOrders">
             My Orders
           </Link>
->>>>>>> 9792b08 (Add My order page and item cart page to app.js)
         </li>
       </ul>
     </div>
