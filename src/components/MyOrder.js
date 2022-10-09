@@ -5,7 +5,7 @@ import {
   faArrowDownLong,
   faMoneyBill1Wave,
 } from "@fortawesome/free-solid-svg-icons";
-import timeZoneConverter from "time-zone-converter";
+// import timeZoneConverter from "time-zone-converter";
 import MyOrderItem from "../components/MyOrderItem";
 import "../styles/myorder.css";
 
@@ -17,12 +17,12 @@ const MyOrder = (props) => {
         <th scope="col">{props.orderNo}</th>
         <th scope="col">{capitalizeString(props.outletName)}</th>
         <th scope="col">
-          {timeZoneConverter(
+          {/* {timeZoneConverter(
             `${props.createdDateTime}`,
             0,
             0,
             "YYYY/MM/DD HH:mm:ss"
-          )}
+          )} */}
         </th>
         <th scope="col">{props.status}</th>
         <th scope="col">{props.deliveryMethod}</th>
@@ -32,13 +32,12 @@ const MyOrder = (props) => {
 
       {/* Order item section */}
       <tr className="mr-2">
-        <th colSpan={7}  style={{ paddingLeft: "45px", paddingRight: "30px" }}>
+        <th colSpan={7} style={{ paddingLeft: "45px", paddingRight: "30px" }}>
           <button
             type="button"
             onClick={() => setShow((prev) => !prev)}
             style={{ backgroundColor: "brown" }}
-            className="btn btn-primary mb-2"
-          >
+            className="btn btn-primary mb-2">
             View order details{" "}
             <FontAwesomeIcon icon={faArrowDownLong} color="white" />
           </button>

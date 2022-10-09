@@ -12,22 +12,25 @@ const Navigation = () => {
           <Link key={1} to="/">
             Home
           </Link>
-          <Link key={2} to="/MainOutlets">
+          <Link key={2} to="/Outlets">
             Outlets
           </Link>
-          <Link key={3} to="/FoodOutlets/1">
+          <Link key={3} to="/MainOutlets">
+            Main-Outlets
+          </Link>
+          <Link key={4} to="/FoodOutlets/1">
             Outlet
           </Link>
-          <Link key={4} to="/WishList">
+          <Link key={5} to="/WishList">
             Wish-List
           </Link>
-          <Link key={5} to="/Profile">
+          <Link key={6} to="/Profile">
             Profile
           </Link>
           <Link key={7} to="/itemcart">
             Itemcart ()
           </Link>
-          <Link key={6} to="/myOrders">
+          <Link key={8} to="/myOrders">
             My Orders
           </Link>
         </li>
