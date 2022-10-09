@@ -7,6 +7,8 @@ import MainOutlets from "./pages/MainOutlets";
 import FoodOutlets from "./pages/FoodOutlet";
 import FavFoodOutlets from "./pages/FavFoodOutletList";
 import Outlet from "./pages/Outlet";
+import ItemCart from "./pages/ItemCart";
+import MyOrder from "./pages/MyOrdersList";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles/master.css";
 
@@ -24,6 +26,8 @@ const App = () => {
           <Route path="/Foods" element={<h1>Foods Component</h1>} />
           <Route path="/WishList" element={<FavFoodOutlets />} />
           <Route path="/Profile" element={<h1>Profile Component</h1>} />
+          <Route path="/itemcart" element={<ItemCart />} />
+          <Route path="/myOrders" element={<MyOrder />} />
         </Routes>
       </BrowserRouter>
 
