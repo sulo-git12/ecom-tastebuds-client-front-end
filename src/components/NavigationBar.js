@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import "../styles/master.css";
 
@@ -16,6 +16,7 @@ const Navigation = () => {
           <Link key={2} to="/Outlets">
             Outlets
           </Link>
+<<<<<<< HEAD
           <Link key={3} to="/Outlets/6335d94791ea97c87af4cfc6">
             Outlet
           </Link>
@@ -28,6 +29,23 @@ const Navigation = () => {
           <Link key={6} to="/Profile">
             Profile
           </Link>
+=======
+          <Link key={3} to="/FoodOutlets/1">
+            Outlet
+          </Link>
+          <Link key={4} to="/WishList">
+            Wish-List
+          </Link>
+          <Link key={5} to="/Profile">
+            Profile
+          </Link>
+          <Link key={7} to="/itemcart">
+            Itemcart ()
+          </Link>
+          <Link key={6} to="/myOrders">
+            My Orders
+          </Link>
+>>>>>>> 9792b08 (Add My order page and item cart page to app.js)
         </li>
       </ul>
     </div>
