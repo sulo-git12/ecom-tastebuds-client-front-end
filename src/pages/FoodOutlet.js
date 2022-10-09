@@ -16,6 +16,7 @@ import {
   faMessage,
   faCircleInfo,
 } from "@fortawesome/free-solid-svg-icons";
+import GoogleMap from "../components/GoogleMap/GMapLocation";
 import "../styles/outlet.css";
 
 const FoodOutlet = () => {
@@ -216,7 +217,14 @@ const FoodOutlet = () => {
                       Location Information
                     </div>
                     <div className="mt-2 p-2">
-                      <div className="map-container">Map data</div>
+                      <div className="map-container">
+                        <GoogleMap
+                          locationTitle={capitalizeString(foodOutlet.name)}
+                          lat={foodOutlet.location.latitude}
+                          lng={foodOutlet.location.longitude}
+                          zoom={12}
+                        />
+                      </div>
                     </div>
                   </li>
                   <li className="list-group-item">
@@ -267,6 +275,24 @@ const FoodOutlet = () => {
               <div className="card-body">
                 <ul className="list-group list-group-flush">
                   <li className="list-group-item">Most Popular</li>
+                  <div>
+                    <button type="button" className="btn btn-primary m-1">
+                      Item NO1 -ADD TO CART
+                    </button>
+                    {"   "}
+                    <button type="button" className="btn btn-primary m-1">
+                      Item NO2 -ADD TO CART
+                    </button>
+                    {"   "}
+                    <button type="button" className="btn btn-primary m-1">
+                      Item NO3 -ADD TO CART
+                    </button>
+                    {"   "}
+                    <button type="button" className="btn btn-primary m-1">
+                      Item NO4 -ADD TO CART
+                    </button>
+                    {"   "}
+                  </div>
                   <li className="list-group-item">Fast Growings</li>
                 </ul>
               </div>
