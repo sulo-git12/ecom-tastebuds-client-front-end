@@ -1,4 +1,4 @@
-const FoodItemCard = ({ productName, imageSrc, description, size, price}) => {
+const FoodItemCard = ({ productName, imageSrc, description, size, price, item}) => {
     return (
         <div className="card" style={{ width: "18rem" }}>
         <div className="card-body">
@@ -10,10 +10,7 @@ const FoodItemCard = ({ productName, imageSrc, description, size, price}) => {
           </h6><br></br>
           <h6>Size: {size}</h6>
           <h5>LKR {price}</h5>
-          <a className="btn btn-primary">
-            Order Now
-            <span className="badge text-bg-light"></span>
-          </a>
+          <button className="btn btn-primary" >Add to Cart</button>
         </div>
       </div>
     )
