@@ -5,6 +5,7 @@
 
 .outlet-header-card-img-top {
   border-radius: 0px 0px 30px 30px !important;
+  max-height: 350px;
 }
 
 .outlet-type-li {
@@ -12,11 +13,58 @@
   margin: 0 20px;
 }
 
-.checked {
-  color: orange;
+.outlet-btn {
+  min-width: 150px !important;
+  font-size: 5px;
 }
 
 .outlet-card-sub-titile {
   color: gray;
   font-size: 18px;
+}
+
+.fav-outlet-card-img {
+  max-height: 120px;
+}
+
+.fav-outlet-card-body {
+  padding: 4px 20px 8px 12px !important;
+}
+
+.fav-outlet-text-primary {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.fav-outlet-text-secondary {
+  font-size: 12px;
+}
+
+.fav-outlet-btn {
+  min-width: 85px !important;
+}
+
+.map-container {
+  height: 400px;
+  width: 100%;
+  background-color: rgb(170, 163, 161);
+}
+
+#root
+  > div
+  > div:nth-child(2)
+  > div
+  > div.row.mt-3.mb-3
+  > div:nth-child(1)
+  > div
+  > div.card-body
+  > ul
+  > li:nth-child(3)
+  > div.mt-2.p-2
+  > div
+  > div
+  > div.map-container
+  > div {
+  width: 96% !important;
+  height: 86% !important;
 }

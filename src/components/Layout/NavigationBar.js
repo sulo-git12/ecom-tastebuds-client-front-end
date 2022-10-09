@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import "../styles/master.css";
 
 const Navigation = () => {
   return (
@@ -13,7 +12,7 @@ const Navigation = () => {
           <Link key={1} to="/">
             Home
           </Link>
-          <Link key={2} to="/Outlets">
+          <Link key={2} to="/MainOutlets">
             Outlets
           </Link>
           <Link key={3} to="/FoodOutlets/1">
