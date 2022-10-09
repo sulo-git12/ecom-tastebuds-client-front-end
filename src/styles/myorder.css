@@ -1,0 +1,32 @@
+.table-heder {
+  border: thick double #32a1ce;
+}
+
+.table-data {
+  border: solid 1px black;
+}
+
+.image-size {
+  vertical-align: middle;
+  width: 150px;
+  height: 70px;
+}
+
+.table-data{
+  vertical-align: middle;
+  border: 0px;
+}
+
+.btn btn-prv{
+ background-color:#116c91 !important;
+}
+
+.table-header{
+  border: 5px solid black;
+  border-collapse: collapse;
+}
+
+.table-detail{
+  padding-left: 45px;
+  padding-right: 35px;
+}
