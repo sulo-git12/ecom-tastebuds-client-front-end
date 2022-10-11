@@ -5,6 +5,7 @@
 
 .outlet-header-card-img-top {
   border-radius: 0px 0px 30px 30px !important;
+  max-height: 350px;
 }
 
 .outlet-type-li {
@@ -12,11 +13,90 @@
   margin: 0 20px;
 }
 
-.checked {
-  color: orange;
+.outlet-btn {
+  min-width: 150px !important;
+  font-size: 5px;
 }
 
 .outlet-card-sub-titile {
   color: gray;
   font-size: 18px;
+}
+
+.fav-outlet-card-img {
+  max-height: 120px;
+}
+
+.fav-outlet-card-body {
+  padding: 4px 20px 8px 12px !important;
+}
+
+.fav-outlet-text-primary {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.fav-outlet-text-secondary {
+  font-size: 12px;
+}
+
+.fav-outlet-btn {
+  min-width: 85px !important;
+}
+
+.map-container {
+  height: 400px;
+  width: 100%;
+  background-color: rgb(170, 163, 161);
+}
+
+.outlet-dark-img {
+  filter: brightness(25%);
+}
+
+.first-txt {
+  color: white;
+  position: absolute;
+  top: 17px;
+  left: 50px;
+}
+
+.ribbon-2 {
+  --f: 0px; /* control the folded part*/
+  --r: 15px; /* control the ribbon shape */
+  --t: 25px; /* the top offset */
+
+  position: absolute;
+  inset: var(--t) calc(-1 * var(--f)) auto auto;
+  padding: 0 10px var(--f) calc(10px + var(--r));
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - var(--f)),
+    calc(100% - var(--f)) 100%,
+    calc(100% - var(--f)) calc(100% - var(--f)),
+    0 calc(100% - var(--f)),
+    var(--r) calc(50% - var(--f) / 2)
+  );
+  background: white;
+  box-shadow: 0 calc(-1 * var(--f)) 0 inset #fdb940;
+}
+​
+  #root
+  > div
+  > div:nth-child(2)
+  > div
+  > div.row.mt-3.mb-3
+  > div:nth-child(1)
+  > div
+  > div.card-body
+  > ul
+  > li:nth-child(3)
+  > div.mt-2.p-2
+  > div
+  > div
+  > div.map-container
+  > div {
+  width: 96% !important;
+  height: 86% !important;
 }
