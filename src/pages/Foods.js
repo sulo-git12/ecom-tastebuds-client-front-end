@@ -5,6 +5,7 @@ import axios from "axios";
 import Food from "../components/foods/Food";
 import Rating from "@mui/material/Rating";
 import base64 from "base-64";
+import { Link } from "react-router-dom";
 
 const Foods = () => {
   const { _id } = useParams();
@@ -84,6 +85,12 @@ const Foods = () => {
                 />
               </small>
             </p>
+            <Link
+              to={`/FoodOutlets/${outletArr.outletNo}`}
+              style={{ textDecoration: "none" }}
+            >
+              More Deatials
+            </Link>
           </div>
         </div>
       </section>
