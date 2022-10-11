@@ -47,7 +47,7 @@ const Footer = () => {
             </div>
           </div>
           <h3 className="copyright">
-            Ocena Blue Technologies Inc. © {new Date().getFullYear()}
+            Ocen Blue Software Team. © {new Date().getFullYear()}
           </h3>
         </div>
       </footer>
