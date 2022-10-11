@@ -24,5 +24,5 @@ class GMapLocation extends Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: "AIzaSyCY6RSFWHiTu0IC83rCsER2dSSb3lmMyOs",
+  apiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
 })(GMapLocation);
