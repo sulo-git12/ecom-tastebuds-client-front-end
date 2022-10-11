@@ -12,7 +12,7 @@ const Outlet = () => {
   const [loading, setLoading] = useState(false);
 
   const getOutletById = async (outletId) => {
-    const url = `http://localhost:8088/api/outlets/${outletId}`;
+    const url = `http://localhost:8088/api/food_outlets/3`;
 
     try {
       const { data } = await axios.get(url);
