@@ -1,6 +1,6 @@
 {
   "serverURL": "http://localhost:8088/",
-  "foodOutletsEndpointPath": "api/outlets/",
+  "foodOutletsEndpointPath": "api/outlets",
   "foodOutletEndpointPath": "api/outlets/",
   "outletFoodsEndpointPath":"api/foods/store/",
   "outletFoodEndpointPath": "api/foods/",
