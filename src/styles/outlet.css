@@ -83,7 +83,6 @@
 }
 ​
   #root
-  > div
   > div:nth-child(2)
   > div
   > div.row.mt-3.mb-3

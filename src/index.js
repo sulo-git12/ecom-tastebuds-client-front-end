@@ -13,9 +13,9 @@ import ItemCart from "./pages/ItemCart";
 import MyOrder from "./pages/MyOrdersList";
 
 // import main css files
-import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles/error.css";
 import "./styles/master.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
