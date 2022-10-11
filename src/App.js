@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavigationBar from "./components/Layout/NavigationBar";
 import Footer from "./components/Layout/Footer";
 import Outlets from "./pages/Outlets";
+import Foods from "./pages/Foods";
 import MainOutlets from "./pages/MainOutlets";
 import FoodOutlets from "./pages/FoodOutlet";
 import FavFoodOutlets from "./pages/FavFoodOutletList";
@@ -19,9 +20,11 @@ const App = () => {
         <NavigationBar />
 
         <Routes>
-          <Route path="/" element={<Outlets />} />
+          <Route path="/" />
           <Route path="/MainOutlets" element={<MainOutlets />} />
           <Route path="/FoodOutlets/:outletId" element={<FoodOutlets />} />
+          <Route path="/Outlets" element={<Outlets />} />
+          <Route path="/Outlet/:_id/Foods" element={<Foods />} />
           <Route path="/Foods" element={<h1>Foods Component</h1>} />
           <Route path="/WishList" element={<FavFoodOutlets />} />
           <Route path="/itemcart" element={<ItemCart />} />
@@ -29,7 +32,7 @@ const App = () => {
         </Routes>
       </BrowserRouter>
 
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 };

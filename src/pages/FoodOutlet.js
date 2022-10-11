@@ -33,7 +33,7 @@ const FoodOutlet = () => {
   const getFoodOutletById = async (prmOutletId) => {
     try {
       let URL =
-        config.serverURL + config.foodOutletsEndpointPath + `${prmOutletId}`;
+        config.serverURL + config.foodOutletEndpointPath + `${prmOutletId}`;
 
       const { data } = await axios.get(URL);
 
