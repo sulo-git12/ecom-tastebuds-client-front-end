@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import config from "../config.json";
 import axios from "axios";
 import capitalizeString from "capitalize-string";
 import lowercase from "@stdlib/string-lowercase";
@@ -16,27 +17,33 @@ import {
   faMessage,
   faCircleInfo,
 } from "@fortawesome/free-solid-svg-icons";
+import GoogleMap from "../components/GoogleMap/GMapLocation";
 import "../styles/outlet.css";
 
 const FoodOutlet = () => {
+  // Define a page parameter
   const { outletId } = useParams();
 
+  // Declare a state variables
   const [foodOutlet, setFoodOutlet] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const domain = "http://localhost:8088/";
-
   // Get specific outlet details by outletId.
   const getFoodOutletById = async (prmOutletId) => {
     try {
-      let apiEndPoint = `api/food_outlets/${prmOutletId}`;
-      let URL = domain + apiEndPoint;
+      let URL =
+        config.serverURL + config.foodOutletsEndpointPath + `${prmOutletId}`;
 
       const { data } = await axios.get(URL);
+
+      // console.log("Data successful retrieved");
+      // console.log(data);
+
       setFoodOutlet(data);
-    } catch (err) {
-      setError(err);
+    } catch (error) {
+      console.log(error);
+      setError(error);
     } finally {
       setLoading(true);
     }
@@ -48,30 +55,37 @@ const FoodOutlet = () => {
   }, []);
 
   // Insert user's faviourte food outlets
-  const insertFavFoodOutlet = (prmUserId, prmOutletId) => {
+  const insertFavFoodOutlet = async (prmUserId, prmOutletId) => {
     try {
+      //Create a request body
       const bodyFavOutlet = {
         userId: prmUserId,
         foodOutletId: prmOutletId,
       };
 
-      let apiEndPoint = "api/favourite_food_outlets";
-      let URL = domain + apiEndPoint;
+      let URL = config.serverURL + config.favoritesEndpointPath;
 
-      axios.post(URL, bodyFavOutlet);
-    } catch (err) {
-      console.log("Error", err.messsage);
-      setError(err);
+      let insertedFavOutlet = await axios.post(URL, bodyFavOutlet);
+
+      alert("Data successful inseterd.");
+      console.log("Data successful inseterd");
+      console.log(insertedFavOutlet);
+    } catch (error) {
+      console.log(error);
     }
   };
 
   const GoogleMapDirection = (sLat, sLlng, eLat, eLng, locationName) => {
-    window.open(
-      `https://www.google.com/maps/dir/${sLat},${sLlng}/${locationName}/@${eLat},${eLng},11z/`
-    );
+    try {
+      window.open(
+        `https://www.google.com/maps/dir/${sLat},${sLlng}/${locationName}/@${eLat},${eLng},11z/`
+      );
+    } catch (error) {
+      console.log(`Error = ${error.message}`);
+    }
   };
 
-  // ------------ start data display arear
+  // ------------ start data display area
 
   // Loading spinner
   if (!loading)
@@ -89,12 +103,11 @@ const FoodOutlet = () => {
     );
 
   // Error occure
-  if (error) return console.log(error);
+  if (error) {
+    console.log(error);
+  }
 
-  // If not there is outlet data
-  if (!foodOutlet) return console.log(`Outlet Nometha`);
-
-  //If there is outlet data
+  //If there is no error & has outlet data
   return (
     <div>
       <div className="container-fluid">
@@ -139,7 +152,10 @@ const FoodOutlet = () => {
                     type="button"
                     className="btn btn-danger outlet-btn"
                     onClick={() => {
-                      insertFavFoodOutlet("1", foodOutlet.outletNo);
+                      insertFavFoodOutlet(
+                        process.env.REACT_APP_LOGGED_USER_ID,
+                        foodOutlet.outletNo
+                      );
                     }}>
                     Add Favorite{" "}
                     <FontAwesomeIcon icon={faHeart} color="white" />
@@ -216,7 +232,14 @@ const FoodOutlet = () => {
                       Location Information
                     </div>
                     <div className="mt-2 p-2">
-                      <div className="map-container">Map data</div>
+                      <div className="map-container">
+                        {/* <GoogleMap
+                          locationTitle={capitalizeString(foodOutlet.name)}
+                          lat={foodOutlet.location.latitude}
+                          lng={foodOutlet.location.longitude}
+                          zoom={12}
+                        /> */}
+                      </div>
                     </div>
                   </li>
                   <li className="list-group-item">

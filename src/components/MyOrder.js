@@ -7,7 +7,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 // import timeZoneConverter from "time-zone-converter";
 import MyOrderItem from "../components/MyOrderItem";
-import "../styles/myorder.css";
 
 const MyOrder = (props) => {
   const [show, setShow] = useState(false);

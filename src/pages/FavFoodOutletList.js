@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from "react";
+import config from "../config.json";
 import axios from "axios";
 import capitalizeString from "capitalize-string";
-import FavFoodOutlet from "../components/FoodOutlet/FavFoodOutlet";
+import ClipLoader from "react-spinners/ClipLoader";
+import FavFoodOutlet from "../components/FavFoodOutlet/FavFoodOutlet";
 import "../styles/outlet.css";
 
 const FavFoodOutletList = () => {
-  const [favFoodOutletsArr, setfavFoodOutletsArr] = useState([]);
-  const [loading, setLoading] = useState(false);
+  // Declare a state variables
+  const [favFoodOutletsArr, setFavFoodOutletsArr] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const domain = "http://localhost:8088/";
-
-  const getFavFoodOutlets = async (userId) => {
+  //Get user's favorite food outlet list
+  const getFavFoodOutlets = async (prmUserId) => {
     try {
-      console.log(userId);
-
-      let apiEndPoint = `api/favourite_food_outlets/${userId}`;
-      let URL = domain + apiEndPoint;
+      let URL =
+        config.serverURL + config.favoritesEndpointPath + `${prmUserId}`;
 
       const { data } = await axios.get(URL);
       let formatedFavFoodOutlets = data.map((outlet) => {
@@ -31,36 +31,55 @@ const FavFoodOutletList = () => {
         };
       });
 
-      setfavFoodOutletsArr(formatedFavFoodOutlets);
+      // console.log(formatedFavFoodOutlets);
+      setFavFoodOutletsArr(formatedFavFoodOutlets);
     } catch (error) {
+      console.log(error);
       setError(error);
     } finally {
-      setLoading(true);
+      setIsLoading(true);
     }
   };
 
+  // call a function by page load
   useEffect(() => {
-    getFavFoodOutlets(1);
+    getFavFoodOutlets(process.env.REACT_APP_LOGGED_USER_ID);
   }, []);
 
-  const deleteFavFoodOutlet = async (userId, outletId) => {
+  //Delete user's favorite food outlet
+  const deleteFavFoodOutlet = async (prmUserId, prmOutletId) => {
     try {
-      let apiEndPoint = `api/favourite_food_outlets/${userId}/${outletId}`;
-      let URL = domain + apiEndPoint;
+      let URL =
+        config.serverURL +
+        config.favoritesEndpointPath +
+        `${prmUserId}/${prmOutletId}`;
 
       await axios.delete(URL);
       let newfavFoodOutletsArr = favFoodOutletsArr.filter((outlet) => {
-        return outlet.outletNo !== outletId;
+        return outlet.outletNo !== prmOutletId;
       });
-      setfavFoodOutletsArr(newfavFoodOutletsArr);
+      setFavFoodOutletsArr(newfavFoodOutletsArr);
       console.log("Deleted Sucessfully");
     } catch (error) {
-      setError(error);
       console.log(error);
-    } finally {
-      setLoading(true);
     }
   };
+
+  // ------------ start data display area
+  // Loading spinner
+  if (!isLoading)
+    return (
+      <div>
+        <div className="spinner">
+          <ClipLoader
+            color={"#581845"}
+            loading={isLoading}
+            size={150}
+            aria-label="Loading Spinner"
+          />
+        </div>
+      </div>
+    );
 
   return (
     <div>
@@ -77,15 +96,12 @@ const FavFoodOutletList = () => {
               <div className="col-md-4 mb-3" key={outlet.id}>
                 <FavFoodOutlet
                   key={outlet.id}
-                  outletId={outlet.id}
-                  outletNo={outlet.outletNo}
-                  name={outlet.name}
-                  openingHrs={outlet.openingHrs}
-                  rating={outlet.rating}
-                  imageUrl={outlet.imageUrl}
-                  isActive={outlet.isActive}
+                  favOutlet={outlet}
                   onDelete={() => {
-                    deleteFavFoodOutlet(1, outlet.outletNo);
+                    deleteFavFoodOutlet(
+                      process.env.REACT_APP_LOGGED_USER_ID,
+                      outlet.outletNo
+                    );
                   }}
                 />
               </div>
