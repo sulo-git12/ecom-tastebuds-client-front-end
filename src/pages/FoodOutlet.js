@@ -233,12 +233,12 @@ const FoodOutlet = () => {
                     </div>
                     <div className="mt-2 p-2">
                       <div className="map-container">
-                        {/* <GoogleMap
+                        <GoogleMap
                           locationTitle={capitalizeString(foodOutlet.name)}
                           lat={foodOutlet.location.latitude}
                           lng={foodOutlet.location.longitude}
                           zoom={12}
-                        /> */}
+                        />
                       </div>
                     </div>
                   </li>
