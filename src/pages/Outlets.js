@@ -13,6 +13,7 @@ const Outlets = () => {
       let outlets = data.map((outlet) => {
         return {
           id: outlet._id,
+          outletId: outlet.outletNo,
           imgUrl: outlet.imageUrl,
           name: outlet.name,
           address: outlet.address,
@@ -37,7 +38,7 @@ const Outlets = () => {
         <div className="container">
           <br />
           <h1 className="jumbotron-heading">
-            Sri Lankan Food Outlets Delivery in Colombo Near Me
+            Sri Lankan Food Outlets in Colombo Near Me
           </h1>
           <p className="lead text-muted">
             Enjoy Sri Lankan Food delivery and takeaway with Taste Buds near you
@@ -47,7 +48,10 @@ const Outlets = () => {
           </p>
         </div>
       </section>
-      <div className="row" style={{ paddingLeft: "8px" }}>
+      <div
+        className="row row-cols-1 row-cols-md-4 g-4"
+        style={{ paddingLeft: "8px",paddingRight: "8px"}}
+      >
         {isLoaded ? (
           outletArr.map((outlet) => {
             return (
@@ -59,7 +63,7 @@ const Outlets = () => {
         ) : (
           <div>No Data Found</div>
         )}
-      </div>
+      </div><br/>
     </div>
   );
 };

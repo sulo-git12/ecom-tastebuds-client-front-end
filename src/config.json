@@ -1,4 +1,4 @@
 {
-    "apiOutletsEndpoint":"http://localhost:8088/api/outlets",
-    "apiFoodsEndpoint":"http://localhost:8088/api/foods"
+    "apiOutletsEndpoint":"http://localhost:8088/api/food_outlets",
+    "apiFoodsEndpoint":"http://localhost:8088/api/foods/store"
 }
