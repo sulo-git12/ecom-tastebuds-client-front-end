@@ -20,9 +20,10 @@ const App = () => {
         <NavigationBar />
 
         <Routes>
-        <Route path="/" element={<Outlets />} />
+          <Route path="/" />
           <Route path="/MainOutlets" element={<MainOutlets />} />
           <Route path="/FoodOutlets/:outletId" element={<FoodOutlets />} />
+          <Route path="/Outlets" element={<Outlets />} />
           <Route path="/Outlet/:_id/Foods" element={<Foods />} />
           <Route path="/Foods" element={<h1>Foods Component</h1>} />
           <Route path="/WishList" element={<FavFoodOutlets />} />

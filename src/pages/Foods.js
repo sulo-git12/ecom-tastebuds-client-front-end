@@ -14,7 +14,7 @@ const Foods = () => {
   const getAllfoodsByOutletId = async (outletId) => {
     try {
       const { data } = await axios.get(
-        `${config.apiFoodsEndpoint}/${outletId}`
+        config.serverURL + config.outletFoodsEndpointPath + `${outletId}`
       );
       let foods = data.map((food) => {
         return {
@@ -33,10 +33,10 @@ const Foods = () => {
     }
   };
 
-  const getAlloutlets = async (outletId) => {
+  const getOutletByOutletId = async (outletId) => {
     try {
       const { data } = await axios.get(
-        `${config.apiOutletsEndpoint}/${outletId}`
+        config.serverURL + config.foodOutletEndpointPath + `${outletId}`
       );
       setOutletArr(data);
     } catch (err) {
@@ -46,7 +46,7 @@ const Foods = () => {
 
   useEffect(() => {
     getAllfoodsByOutletId(base64.decode(_id));
-    getAlloutlets(base64.decode(_id));
+    getOutletByOutletId(base64.decode(_id));
   }, []);
 
   return (

@@ -9,7 +9,8 @@ const Outlets = () => {
 
   const getAlloutlets = async () => {
     try {
-      const { data } = await axios.get(config.apiOutletsEndpoint);
+      const URL = config.serverURL + config.foodOutletsEndpointPath;
+      const { data } = await axios.get("http://localhost:8088/api/outlets");
       let outlets = data.map((outlet) => {
         return {
           id: outlet._id,
