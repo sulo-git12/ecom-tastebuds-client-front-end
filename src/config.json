@@ -1,4 +1,10 @@
 {
-    "apiOutletsEndpoint":"http://localhost:8088/api/outlets",
-    "apiFoodsEndpoint":"http://localhost:8088/api/foods"
+  "serverURL": "http://localhost:8088/",
+  "foodOutletsEndpointPath": "api/outlets",
+  "foodOutletEndpointPath": "api/outlets/",
+  "outletFoodsEndpointPath":"api/foods/store/",
+  "outletFoodEndpointPath": "api/foods/",
+  "favoritesEndpointPath": "api/favorites/",
+  "ordersEndpointPath": "api/orders/",
+  "ordersItemsEndpointPath": "api/orders/items/"
 }

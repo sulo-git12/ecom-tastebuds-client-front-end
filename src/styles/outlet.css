@@ -50,8 +50,39 @@
   background-color: rgb(170, 163, 161);
 }
 
-#root
-  > div
+.outlet-dark-img {
+  filter: brightness(25%);
+}
+
+.first-txt {
+  color: white;
+  position: absolute;
+  top: 17px;
+  left: 50px;
+}
+
+.ribbon-2 {
+  --f: 0px; /* control the folded part*/
+  --r: 15px; /* control the ribbon shape */
+  --t: 25px; /* the top offset */
+
+  position: absolute;
+  inset: var(--t) calc(-1 * var(--f)) auto auto;
+  padding: 0 10px var(--f) calc(10px + var(--r));
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - var(--f)),
+    calc(100% - var(--f)) 100%,
+    calc(100% - var(--f)) calc(100% - var(--f)),
+    0 calc(100% - var(--f)),
+    var(--r) calc(50% - var(--f) / 2)
+  );
+  background: white;
+  box-shadow: 0 calc(-1 * var(--f)) 0 inset #fdb940;
+}
+​
+  #root
   > div:nth-child(2)
   > div
   > div.row.mt-3.mb-3
