@@ -9,8 +9,9 @@ const Outlets = () => {
 
   const getAlloutlets = async () => {
     try {
-      const URL = config.serverURL + config.foodOutletsEndpointPath;
-      const { data } = await axios.get("http://localhost:8088/api/outlets");
+      const { data } = await axios.get(
+        config.serverURL + config.foodOutletsEndpointPath
+      );
       let outlets = data.map((outlet) => {
         return {
           id: outlet._id,
@@ -51,7 +52,7 @@ const Outlets = () => {
       </section>
       <div
         className="row row-cols-1 row-cols-md-4 g-4"
-        style={{ paddingLeft: "8px",paddingRight: "8px"}}
+        style={{ paddingLeft: "8px", paddingRight: "8px" }}
       >
         {isLoaded ? (
           outletArr.map((outlet) => {
@@ -64,7 +65,8 @@ const Outlets = () => {
         ) : (
           <div>No Data Found</div>
         )}
-      </div><br/>
+      </div>
+      <br />
     </div>
   );
 };
