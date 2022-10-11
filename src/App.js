@@ -10,6 +10,7 @@ import Outlet from "./pages/Outlet";
 import ItemCart from "./pages/ItemCart";
 import MyOrder from "./pages/MyOrdersList";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./styles/error.css";
 import "./styles/master.css";
 
 const App = () => {
