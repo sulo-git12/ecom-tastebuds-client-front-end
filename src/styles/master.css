@@ -49,3 +49,32 @@
   top: 40%;
   width: 100%;
 }
+
+.login-btn{
+  color: rgb(104, 85, 224);
+  background-color: #fdb940;
+  border: 1px solid rgba(104, 85, 224, 1);
+  border-radius: 8px;
+  width: 100px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.logout-btn{
+  color: rgb(6, 6, 6);
+  background-color: #fdb940;
+  border: 1px solid rgba(104, 85, 224, 1);
+  border-radius: 8px;
+  width: 100px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+button:hover {
+  color: white;
+  box-shadow: 0 0 20px rgba(104, 85, 224, 0.6);
+  background-color: rgba(104, 85, 224, 1);
+}
+
+.username{
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+}
