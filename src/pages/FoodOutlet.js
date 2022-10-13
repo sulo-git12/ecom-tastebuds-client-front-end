@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import config from "../config.json";
 import axios from "axios";
+import moment from "moment";
+import Error from "../components/Error/Error";
 import capitalizeString from "capitalize-string";
 import lowercase from "@stdlib/string-lowercase";
 import ClipLoader from "react-spinners/ClipLoader";
-import { Rating } from "react-simple-star-rating";
+import Rating from "@mui/material/Rating";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHeart,
@@ -26,6 +28,7 @@ const FoodOutlet = () => {
 
   // Declare a state variables
   const [foodOutlet, setFoodOutlet] = useState([]);
+  const [isOutletOpen, setIsOutletOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -33,7 +36,7 @@ const FoodOutlet = () => {
   const getFoodOutletById = async (prmOutletId) => {
     try {
       let URL =
-        config.serverURL + config.foodOutletEndpointPath + `${prmOutletId}`;
+        config.serverURL + config.foodOutletsEndpointPath + `${prmOutletId}`;
 
       const { data } = await axios.get(URL);
 
@@ -41,11 +44,45 @@ const FoodOutlet = () => {
       // console.log(data);
 
       setFoodOutlet(data);
+      handleOutletStatus(data.opening.hours);
     } catch (error) {
-      console.log(error);
+      if (error.response) {
+        console.log(
+          `Error = Status Code : ${error.response.status}, Title : ${error.response.data.statusCode}, Message : ${error.response.data.message}`
+        );
+      } else if (error.request) {
+        console.log(error.request);
+      } else {
+        console.log(`Error = ${error.message}`);
+      }
       setError(error);
     } finally {
       setLoading(true);
+    }
+  };
+
+  const handleOutletStatus = (prmOpeningHours) => {
+    try {
+      const current = new Date();
+      let hourArr = prmOpeningHours.split("-");
+
+      let currentTime = moment(current, ["h:mm A"]).format("HH:mm");
+      let openTime = moment(hourArr[0], ["h:mm A"]).format("HH:mm");
+      let closeTime = moment(hourArr[1], ["h:mm A"]).format("HH:mm");
+
+      // console.log(currentTime);
+      // console.log(openTime);
+      // console.log(closeTime);
+
+      if (openTime <= currentTime && closeTime >= currentTime) {
+        // console.log("outlet open");
+        setIsOutletOpen(true);
+      } else {
+        // console.log("outlet close");
+        setIsOutletOpen(false);
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -67,14 +104,23 @@ const FoodOutlet = () => {
 
       let insertedFavOutlet = await axios.post(URL, bodyFavOutlet);
 
-      alert("Data successful inseterd.");
-      console.log("Data successful inseterd");
+      alert("Successful Added to Faviourties.");
+      console.log("Faviourte Food Outlet Data successful inseterd.");
       console.log(insertedFavOutlet);
     } catch (error) {
-      console.log(error);
+      if (error.response) {
+        console.log(
+          `Error = Status Code : ${error.response.status}, Title : ${error.response.data.status}, Message : ${error.response.data.message}`
+        );
+      } else if (error.request) {
+        console.log(error.request);
+      } else {
+        console.log(`Error = ${error.message}`);
+      }
     }
   };
 
+  // Redirect google direction page
   const GoogleMapDirection = (sLat, sLlng, eLat, eLng, locationName) => {
     try {
       window.open(
@@ -94,7 +140,7 @@ const FoodOutlet = () => {
         <div className="spinner">
           <ClipLoader
             color={"#581845"}
-            loading={loading}
+            loading={true}
             size={150}
             aria-label="Loading Spinner"
           />
@@ -104,7 +150,17 @@ const FoodOutlet = () => {
 
   // Error occure
   if (error) {
-    console.log(error);
+    // if (error.response) {
+    return (
+      <div>
+        <Error
+          code={error.response.status}
+          title={error.response.data.statusCode}
+          message={error.response.data.message}
+        />
+      </div>
+    );
+    // }
   }
 
   //If there is no error & has outlet data
@@ -115,8 +171,15 @@ const FoodOutlet = () => {
           <div className="card shadow outlet-header-card">
             <img
               src={foodOutlet.imageUrl}
-              className="card-img-top shadow outlet-header-card-img-top"
+              className={`card-img-top shadow outlet-header-card-img-top ${
+                isOutletOpen ? "" : "outlet-dark-img"
+              }`}
               alt="Food Outlet Image"></img>
+            {isOutletOpen ? (
+              <div></div>
+            ) : (
+              <div className="ribbon-2">Outlet Is Close</div>
+            )}
             <div className="card-body">
               <div className="row">
                 <div className="col-md-9">
@@ -124,7 +187,11 @@ const FoodOutlet = () => {
                     {capitalizeString(
                       `${foodOutlet.name} (${foodOutlet.address.city})`
                     )}{" "}
-                    <span className="badge text-bg-success">OPEN</span>
+                    {isOutletOpen ? (
+                      <span className="badge text-bg-success">OPEN</span>
+                    ) : (
+                      <span className="badge text-bg-secondary">COLSE</span>
+                    )}
                   </h5>
                   <div className="card-text">
                     <ul style={{ paddingLeft: "0px" }}>
@@ -139,13 +206,15 @@ const FoodOutlet = () => {
                   </div>
                 </div>
                 <div className="col-md-3">
-                  <div className="mb-1">
-                    Rating :
-                    <Rating
-                      size={28}
-                      readonly={true}
-                      initialValue={foodOutlet.rating}
-                    />
+                  <div className="row mb-1">
+                    <div className="col-md-3">Rating :</div>
+                    <div className="col-md-6">
+                      <Rating
+                        name="size-medium"
+                        value={foodOutlet.rating}
+                        readOnly
+                      />
+                    </div>
                   </div>
                   <button
                     id="btnAddFavouriteOutletList"
@@ -233,12 +302,12 @@ const FoodOutlet = () => {
                     </div>
                     <div className="mt-2 p-2">
                       <div className="map-container">
-                        <GoogleMap
+                        {/* <GoogleMap
                           locationTitle={capitalizeString(foodOutlet.name)}
                           lat={foodOutlet.location.latitude}
                           lng={foodOutlet.location.longitude}
                           zoom={12}
-                        />
+                        /> */}
                       </div>
                     </div>
                   </li>
@@ -290,6 +359,7 @@ const FoodOutlet = () => {
               <div className="card-body">
                 <ul className="list-group list-group-flush">
                   <li className="list-group-item">Most Popular</li>
+                  <div></div>
                   <li className="list-group-item">Fast Growings</li>
                 </ul>
               </div>
