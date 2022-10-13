@@ -5,7 +5,7 @@ import { Auth0Provider } from "@auth0/auth0-react";
 
 // ----- import pages
 import NavigationBar from "./components/Layout/NavigationBar";
-// import Footer from "./components/Layout/Footer";
+import Footer from "./components/Layout/Footer";
 import Outlets from "./pages/Outlets";
 import Foods from "./pages/Foods";
 import FoodOutlets from "./pages/FoodOutlet";
@@ -16,6 +16,7 @@ import MyOrder from "./pages/MyOrdersList";
 // import main css files
 import "./styles/master.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./styles/master.css";
 
 
 const domainaddress = process.env.REACT_APP_AUTH0_DOMAIN;
