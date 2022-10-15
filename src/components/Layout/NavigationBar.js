@@ -18,7 +18,7 @@ const Navigation = () => {
                 TasteBuds
               </Link>
               <Link key={1} to="/Favourites">
-                Wish-List
+                Favourites
               </Link>
               <Link key={2} to="/Itemcart">
                 Itemcart (2)
