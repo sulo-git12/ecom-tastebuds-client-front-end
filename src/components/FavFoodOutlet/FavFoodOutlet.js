@@ -1,5 +1,5 @@
 import React from "react";
-import { Rating } from "react-simple-star-rating";
+import Rating from "@mui/material/Rating";
 import { Link } from "react-router-dom";
 
 const FavFoodOutlet = (props) => {
@@ -21,9 +21,9 @@ const FavFoodOutlet = (props) => {
               <div className="col-md-6">
                 <div>
                   <Rating
-                    size={28}
-                    readonly={true}
-                    initialValue={props.favOutlet.rating}
+                    name="size-medium"
+                    value={props.favOutlet.rating}
+                    readOnly
                   />
                 </div>
                 <div className="fav-outlet-text-secondary">

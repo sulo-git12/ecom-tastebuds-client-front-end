@@ -3,6 +3,7 @@ import config from "../config.json";
 import axios from "axios";
 import capitalizeString from "capitalize-string";
 import ClipLoader from "react-spinners/ClipLoader";
+import Error from "../components/Error/Error";
 import FavFoodOutlet from "../components/FavFoodOutlet/FavFoodOutlet";
 import "../styles/outlet.css";
 
@@ -34,7 +35,15 @@ const FavFoodOutletList = () => {
       // console.log(formatedFavFoodOutlets);
       setFavFoodOutletsArr(formatedFavFoodOutlets);
     } catch (error) {
-      console.log(error);
+      if (error.response) {
+        console.log(
+          `Error = Status Code : ${error.response.status}, Title : ${error.response.data.statusCode}, Message : ${error.response.data.message}`
+        );
+      } else if (error.request) {
+        console.log(error.request);
+      } else {
+        console.log(`Error = ${error.message}`);
+      }
       setError(error);
     } finally {
       setIsLoading(true);
@@ -61,7 +70,15 @@ const FavFoodOutletList = () => {
       setFavFoodOutletsArr(newfavFoodOutletsArr);
       console.log("Deleted Sucessfully");
     } catch (error) {
-      console.log(error);
+      if (error.response) {
+        console.log(
+          `Error = Status Code : ${error.response.status}, Title : ${error.response.data.statusCode}, Message : ${error.response.data.message}`
+        );
+      } else if (error.request) {
+        console.log(error.request);
+      } else {
+        console.log(`Error = ${error.message}`);
+      }
     }
   };
 
@@ -73,7 +90,7 @@ const FavFoodOutletList = () => {
         <div className="spinner">
           <ClipLoader
             color={"#581845"}
-            loading={isLoading}
+            loading={true}
             size={150}
             aria-label="Loading Spinner"
           />
@@ -91,22 +108,38 @@ const FavFoodOutletList = () => {
         </div>
 
         <div className="row m-2">
-          {favFoodOutletsArr.map((outlet) => {
-            return (
-              <div className="col-md-4 mb-3" key={outlet.id}>
-                <FavFoodOutlet
-                  key={outlet.id}
-                  favOutlet={outlet}
-                  onDelete={() => {
-                    deleteFavFoodOutlet(
-                      process.env.REACT_APP_LOGGED_USER_ID,
-                      outlet.outletNo
-                    );
-                  }}
+          {error ? (
+            error.response.status === 404 ? (
+              <div className="page-middle">
+                Your Favourite Food List is Empty.
+              </div>
+            ) : (
+              <div>
+                <Error
+                  code={error.response.status}
+                  title={error.response.data.statusCode}
+                  message={error.response.data.message}
                 />
               </div>
-            );
-          })}
+            )
+          ) : (
+            favFoodOutletsArr.map((outlet) => {
+              return (
+                <div className="col-md-4 mb-3" key={outlet.id}>
+                  <FavFoodOutlet
+                    key={outlet.id}
+                    favOutlet={outlet}
+                    onDelete={() => {
+                      deleteFavFoodOutlet(
+                        process.env.REACT_APP_LOGGED_USER_ID,
+                        outlet.outletNo
+                      );
+                    }}
+                  />
+                </div>
+              );
+            })
+          )}
         </div>
       </div>
     </div>
