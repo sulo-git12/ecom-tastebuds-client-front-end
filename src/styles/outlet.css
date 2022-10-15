@@ -45,7 +45,7 @@
 }
 
 .map-container {
-  height: 400px;
+  height: 450px;
   width: 100%;
   background-color: rgb(170, 163, 161);
 }
@@ -81,8 +81,19 @@
   background: white;
   box-shadow: 0 calc(-1 * var(--f)) 0 inset #fdb940;
 }
-​
-  #root
+
+.spinner {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+#root
   > div:nth-child(2)
   > div
   > div.row.mt-3.mb-3
@@ -96,17 +107,7 @@
   > div
   > div.map-container
   > div {
-  width: 96% !important;
-  height: 86% !important;
-}
-
-.spinner {
-  width: 100px;
-  height: 100px;
   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
+  width: 96% !important;
+  height: 88% !important;
 }
