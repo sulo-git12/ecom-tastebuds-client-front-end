@@ -1,40 +1,48 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import MyOrder from "../components/MyOrder";
+import config from "../config.json";
+import capitalizeString from "capitalize-string";
+import moment from "moment";
+import MyOrder from "../components/MyOrder/MyOrder";
 import "../styles/myorder.css";
 
 const MyOrderList = () => {
   const [myOrders, setmyOrders] = useState([]);
 
-  const getMyOrders = async () => {
-    let URL = "http://localhost:8088/api/my_orders/10";
+  const getMyOrders = async (userId) => {
+    try {
+      let URL = config.serverURL + config.ordersEndpointPath + `${userId}`;
 
-    const { data } = await axios.get(URL);
-    let newMyOrder = data.map((order) => {
-      return {
-        orderId: order.orderId,
-        userNo: order.userNo,
-        outletName: order.OutletData.name,
-        totalAmount: order.totalAmount,
-        payMethod: order.payMethod,
-        deliveryMethod: order.deliveryMethod,
-        status: order.status,
-        createdDateTime: order.createdDateTime,
-      };
-    });
-
-    setmyOrders(newMyOrder);
+      const { data } = await axios.get(URL);
+      let newMyOrder = data.map((order) => {
+        return {
+          orderId: order.orderId,
+          userNo: order.userNo,
+          outletName: capitalizeString(order.OutletData.name),
+          totalAmount: order.totalAmount.toFixed(2),
+          payMethod: order.payMethod,
+          deliveryMethod: order.deliveryMethod,
+          status: order.status,
+          createdDateTime: moment(order.createdDateTime).format(
+            "MMMM Do YYYY, h:mm: a"
+          ),
+        };
+      });
+      setmyOrders(newMyOrder);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
-    getMyOrders();
+    getMyOrders(process.env.REACT_APP_LOGGED_USER_ID);
   }, []);
 
   return (
     <div>
       <div className="container-fluid">
         <div className="row m-3">
-          <p> {`Home > Faviourte Food Outlet`}</p>
+          <p> {`Home > My orders`}</p>
           <h3>My orders on Tastebuds</h3>
           <hr />
         </div>
@@ -57,16 +65,7 @@ const MyOrderList = () => {
             {myOrders.map((order) => {
               return (
                 <>
-                  <MyOrder
-                    key={order.orderId}
-                    orderNo={order.orderId}
-                    outletName={order.outletName}
-                    totalAmount={order.totalAmount}
-                    payMethod={order.payMethod}
-                    deliveryMethod={order.deliveryMethod}
-                    status={order.status}
-                    createdDateTime={order.createdDateTime}
-                  />
+                  <MyOrder key={order.orderId} order={order} />
                 </>
               );
             })}
