@@ -31,7 +31,7 @@ root.render(
     <Router>
       <NavigationBar />
       <Routes>
-        <Route path="/TasteBuds" element={<Outlets />} />
+        <Route path="/" exact={true} element={<Outlets />} />
         <Route path="/Outlet/:_id/Foods" element={<Foods />} />
         <Route path="/FoodOutlets/:outletId" element={<FoodOutlets />} />
         <Route path="/Favourites" element={<FavFoodOutlets />} />

@@ -14,7 +14,7 @@ const Navigation = () => {
         <li>
           {isAuthenticated ? (
             <>
-              <Link key={0} className="brand-name" to="/TasteBuds">
+              <Link key={0} className="brand-name" to="/">
                 TasteBuds
               </Link>
               <Link key={1} to="/Favourites">
