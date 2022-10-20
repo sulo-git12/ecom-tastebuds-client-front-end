@@ -20,6 +20,7 @@ const Foods = () => {
       let foods = data.map((food) => {
         return {
           id: food._id,
+          itmeId: food.itemNo,
           imgUrl: food.imageUrl,
           name: food.name,
           itemNo: food.itemNo,
@@ -102,7 +103,7 @@ const Foods = () => {
           foodArr.map((food) => {
             return (
               <div className="col" key={food.id}>
-                <Food key={food.id} food={food} />
+                <Food key={food.id} outletId={base64.decode(_id)} food={food} />
               </div>
             );
           })

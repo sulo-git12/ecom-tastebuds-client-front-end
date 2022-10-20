@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ReactDOM from "react-dom/client";
 import { Auth0Provider } from "@auth0/auth0-react";
+import { CartContextProvider } from "./store/cart-context";
 
 // ----- import pages
 import NavigationBar from "./components/Layout/NavigationBar";
@@ -24,7 +25,8 @@ const clientID = process.env.REACT_APP_AUTH0_CLIENT_ID;
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <Auth0Provider
+  <CartContextProvider>
+    <Auth0Provider
     domain = {domainaddress}
     clientId = {clientID}
     redirectUri={window.location.origin} 
@@ -42,4 +44,5 @@ root.render(
       {/* <Footer /> */}
     </Router>
   </Auth0Provider>
+  </CartContextProvider>
 );

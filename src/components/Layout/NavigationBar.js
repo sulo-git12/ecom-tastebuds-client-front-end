@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import CartContext from "../../store/cart-context";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const Navigation = () => {
@@ -7,6 +8,19 @@ const Navigation = () => {
   const { logout } = useAuth0();
   const { isAuthenticated } = useAuth0();
   const { user } = useAuth0();
+
+  const cartCtx = useContext(CartContext);
+  const [cartItemsCount, setCartItemsCount] = useState(0);
+
+  useEffect(() => {
+    //Count the items in the cart
+    let itemCount = 0;
+    cartCtx.cartItems.forEach((singleItem) => {
+      itemCount = itemCount + singleItem.qty;
+    });
+    setCartItemsCount(itemCount);
+  }, [cartCtx.cartItems]);
+
 
   return (
     <div>
@@ -21,7 +35,7 @@ const Navigation = () => {
                 Wish-List
               </Link>
               <Link key={2} to="/Itemcart">
-                Itemcart (2)
+                Itemcart ({cartItemsCount})
               </Link>
               <Link key={3} to="/MyOrders">
                 My Orders
