@@ -1,7 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
+import CartContext from "../../store/cart-context";
 import Rating from "@mui/material/Rating";
 
 const Food = (props) => {
+
+  const cartCtx = useContext(CartContext);
+  const addToCart = (newCartItem) => {
+    
+    const newCartItemCopy = {...newCartItem};
+    newCartItemCopy.qty = 1;
+    cartCtx.addItem(newCartItemCopy);
+  };
+
   return (
     <React.Fragment>
       <div className="card h-100" style={{ width: "18rem", height: "auto" }}>
@@ -10,12 +20,12 @@ const Food = (props) => {
           alt="Resturan"
           className="card-img-top"
           style={{ height: "200px" }}
-        ></img>
+        ></img>s
         <span
           class="badge bg-success"
           style={{ top: "5px", position: "absolute" }}
         >
-          Promoted
+          Promoted {props.outletId}
         </span>
         <div className="card-body">
           <div className="row">
@@ -42,7 +52,10 @@ const Food = (props) => {
               </button>
             </div>
             <div className="col">
-              <button type="button" className="btn btn-warning">
+              <button type="button" className="btn btn-warning"
+              onClick={()=>{
+                addToCart(props.food);
+              }}>
                 Add to cart
               </button>
             </div>
